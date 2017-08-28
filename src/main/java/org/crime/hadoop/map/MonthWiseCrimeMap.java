@@ -7,17 +7,20 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Mapper.Context;
+import org.crime.utils.DateUtil;
 
-public class CrimeTypeMAP extends Mapper<LongWritable, Text, Text, IntWritable>{
-	
+public class MonthWiseCrimeMap extends Mapper<LongWritable, Text, Text, IntWritable>{
+
 	private final static IntWritable one = new IntWritable(1);
 	private Text word = new Text();
+	private DateUtil dateutil = new DateUtil();
 	
 	@Override
 	public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 		String line = value.toString();
         String[] lineSplit  = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
-		StringTokenizer tokenizer = new StringTokenizer(lineSplit[1].replaceAll("[^a-zA-Z0-9]", ""));
+		StringTokenizer tokenizer = new StringTokenizer(dateutil.getMonth(lineSplit[4]));
 		while (tokenizer.hasMoreTokens()) {
 			word.set(tokenizer.nextToken());
 			context.write(word, one);
@@ -31,5 +34,4 @@ public class CrimeTypeMAP extends Mapper<LongWritable, Text, Text, IntWritable>{
 		}
 		cleanup(context);
 	}
-
 }

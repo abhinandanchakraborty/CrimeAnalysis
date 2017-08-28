@@ -85,16 +85,50 @@
 	</nav>
 
 	<div class="row">
-		<div class="col-md-6">.col-md-6</div>
-		<div class="col-md-6">.col-md-6</div>
+		<div class="col-md-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Crime Types</div>
+					<div class="panel-body">
+						<div id="loading">
+							<p>
+								<img src="assets/img/loading.gif" height="100" width="200" />
+							</p>
+						</div>
+						<div id="container"></div>
+					</div>
+				</div>
+			</div>
 	</div>
+	<div class="row">
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Crime Types in Word Cloud</div>
+					<div class="panel-body">
+						<div id="loading">
+							<p>
+								<img src="assets/img/loading.gif" height="100" width="200" />
+							</p>
+						</div>
+						<div id="crimecloud"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Crime in Daywise</div>
+					<div class="panel-body">
+						<div id="loading">
+							<p>
+								<img src="assets/img/loading.gif" height="100" width="200" />
+							</p>
+						</div>
+						<div id="daywise_analysis"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	<div class="container-fluid">
-		<div class="page-header">
-			<h1>Sticky footer</h1>
-		</div>
-		<p class="lead">Pin a fixed-height footer to the bottom of the
-			viewport in desktop browsers with this custom HTML and CSS.</p>
 		<p>
 			Use <a href="../sticky-footer-navbar">the sticky footer with a
 				fixed navbar</a> if need be, too.
