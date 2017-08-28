@@ -6,9 +6,10 @@ import java.util.StringTokenizer;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class AreaWiseCrimeMap extends Reducer<LongWritable, Text, Text, IntWritable>{
+public class AreaWiseCrimeMap extends Mapper<LongWritable, Text, Text, IntWritable>{
 	private final static IntWritable one = new IntWritable(1);
 	private Text word = new Text();
 	

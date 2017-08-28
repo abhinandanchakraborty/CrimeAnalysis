@@ -19,7 +19,7 @@ public class MonthWiseCrimeMap extends Mapper<LongWritable, Text, Text, IntWrita
 	@Override
 	public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 		String line = value.toString();
-        String[] lineSplit  = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+        String[] lineSplit  = line.split(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)",-1);
 		StringTokenizer tokenizer = new StringTokenizer(dateutil.getMonth(lineSplit[4]));
 		while (tokenizer.hasMoreTokens()) {
 			word.set(tokenizer.nextToken());
