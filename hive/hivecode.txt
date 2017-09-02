@@ -1,0 +1,17 @@
+create table crimedata(Incident String,Category String,Description String,Day String,CDate String,CTime String,Pd String,Resolution String,Address String,CLong String, CLat String, CLocation String) row format delimited fields terminated by ",(?=([^\"]*\"[^\"]*\")*[^\"]*$)" tblproperties ("skip.header.line.count"="1");
+
+load data local inpath '/home/cloudera/Downloads/crime.csv' into table crimedata;
+
+    Map Reduce For All Crime Types (select category,count(*) from crimedata group by category;)
+
+    Map Reduce For All Day Wise Crime(select day,count(*) from crimedata group by day;)
+
+    Map Reduce For All Year Wise Crime(select year(from_unixtime(UNIX_TIMESTAMP(cdate,'MM/dd/yyyy'))),count(*) as c from crimedata group by year(from_unixtime(UNIX_TIMESTAMP(cdate,'MM/dd/yyyy')));)
+
+    Map Reduce For All Month Wise Crime(select month(from_unixtime(UNIX_TIMESTAMP(cdate,'MM/dd/yyyy'))),count(*) as c from crimedata group by month(from_unixtime(UNIX_TIMESTAMP(cdate,'MM/dd/yyyy')));)
+
+    Map Reduce For All Pd Districe Wise Crime(select pd,count(*) from crimedata group by pd;)
+
+    Map Reduce For All Time Wise Crime(select ctime,count(*) from crimedata group by ctime;)
+
+    Map Reduce For lat long wise Crime(select clat,clong,count(*) as c from crimedata group by clat,clong;)
